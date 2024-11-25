@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>AimsProject</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>Design/AimsProject_Class.asta</name>
+			<type>1</type>
+			<location>D:/2024.1/OOPLab-IT3103/Lab_02/Design/AimsProject_Class.asta</location>
+		</link>
+		<link>
+			<name>Design/AimsProject_Class.png</name>
+			<type>1</type>
+			<location>D:/2024.1/OOPLab-IT3103/Lab_02/Design/AimsProject_Class.png</location>
+		</link>
+		<link>
+			<name>Requirement/AimsProject_UseCase.asta</name>
+			<type>1</type>
+			<location>D:/2024.1/OOPLab-IT3103/Lab_02/Requirement/AimsProject_UseCase.asta</location>
+		</link>
+		<link>
+			<name>Requirement/AimsProject_UseCase.png</name>
+			<type>1</type>
+			<location>D:/2024.1/OOPLab-IT3103/Lab_02/Requirement/AimsProject_UseCase.png</location>
+		</link>
+	</linkedResources>
+</projectDescription>
