@@ -1,0 +1,57 @@
+Question: Alternatively, to compare items in the cart, instead of using Comparator, we can use the Comparable interface and override the compareTo()method. You can refer to the Java docs to see the information of this interface. 
+Suppose we are taking this Comparable interface approach.
+
+1. What class should implement the Comparable interface?
+   - Các lớp con của `Media`, như `Book`, `DigitalVideoDisc` và `CompactDisc`, nên triển khai giao diện `Comparable` để có thể so sánh các đối tượng này theo thứ tự cụ thể.
+
+2. In those classes, how should you implement the compareTo()method be to reflect the ordering that we want?
+   - Phương thức `compareTo()` trong các lớp triển khai cần so sánh các đối tượng dựa trên tiêu chí mong muốn. Ví dụ:
+     - **Theo tiêu chí "title, rồi cost":**
+       ```
+       @Override
+       public int compareTo(Media other) {
+           int titleComparison = this.getTitle().compareTo(other.getTitle());
+           if (titleComparison != 0) {
+               return titleComparison;
+           }
+           return Float.compare(this.getCost(), other.getCost());
+       }
+       ```
+     - **Theo tiêu chí "cost, rồi title":**
+       ```
+       @Override
+       public int compareTo(Media other) {
+           int costComparison = Float.compare(this.getCost(), other.getCost());
+           if (costComparison != 0) {
+               return costComparison;
+           }
+           return this.getTitle().compareTo(other.getTitle());
+       }
+       ```
+
+3. Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+   - Không thể. 
+   - `Comparable` chỉ hỗ trợ một quy tắc sắp xếp duy nhất được định nghĩa trong phương thức `compareTo()`. Nếu cần hai quy tắc sắp xếp, bạn phải sử dụng `Comparator`, vì nó cho phép định nghĩa nhiều quy tắc sắp xếp khác nhau.
+
+4. Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+   - Để áp dụng quy tắc sắp xếp riêng cho DVD, bạn có thể:
+     - Ghi đè phương thức `compareTo()` trong lớp `DigitalVideoDisc`:
+       ```
+       @Override
+       public int compareTo(Media other) {
+           if (other instanceof DigitalVideoDisc) {
+               DigitalVideoDisc dvd = (DigitalVideoDisc) other;
+               int titleComparison = this.getTitle().compareTo(dvd.getTitle());
+               if (titleComparison != 0) {
+                   return titleComparison;
+               }
+               int lengthComparison = Integer.compare(dvd.getLength(), this.getLength()); // Chiều dài giảm dần
+               if (lengthComparison != 0) {
+                   return lengthComparison;
+               }
+               return Float.compare(this.getCost(), dvd.getCost());
+           }
+           return super.compareTo(other);
+       }
+       ```
+     - Quy tắc này chỉ áp dụng cho `DigitalVideoDisc`, trong khi các lớp khác sử dụng quy tắc mặc định.
