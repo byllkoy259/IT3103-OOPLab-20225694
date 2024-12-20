@@ -25,7 +25,10 @@ public class CartScreenController {
 	private Store store;
 	private Cart cart;
 	private boolean radioBtnFilterId = true;
+	
+	@SuppressWarnings("unused")
 	private boolean radioBtnFilterTitle = true;
+	
 	private FilteredList<Media> filteredCart;
 	private JFrame stage;
 	
@@ -147,22 +150,6 @@ public class CartScreenController {
 	}
 
 	@FXML
-	public void detailsButtonPressed(ActionEvent event) {
-		Media media = this.tblMedia.getSelectionModel().getSelectedItem();
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Detail infomation");
-		alert.setHeaderText("Viewing " + media.getTitle() + " detail infomation.");
-		if (media instanceof CompactDisc) {
-			alert.setContentText(((CompactDisc) media).toString());
-		} else if (media instanceof DigitalVideoDisc) {
-			alert.setContentText(((DigitalVideoDisc) media).toString());
-		} else if (media instanceof Book) {
-			alert.setContentText(((Book) media).toString());
-		}
-		alert.showAndWait();
-	}
-
-	@FXML
 	public void placeOrderPressed(ActionEvent event) {
 		if (this.cart.getLength() > 0) {
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -190,25 +177,6 @@ public class CartScreenController {
 	@FXML
 	public void setFilterByTitle() {
 		this.radioBtnFilterId = false;
-	}
-
-	@FXML
-	public void sortBtnPressed() {
-		if (radioBtnFilterTitle) {
-			this.cart.sortByTitle();
-		} else {
-			this.cart.sortByCost();
-		}
-	}
-
-	@FXML
-	public void setSortByTitle() {
-		this.radioBtnFilterTitle = true;
-	}
-
-	@FXML
-	public void setSortByCost() {
-		this.radioBtnFilterTitle = false;
 	}
 
 	@SuppressWarnings("deprecation")
