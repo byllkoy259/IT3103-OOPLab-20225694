@@ -178,6 +178,16 @@ public class CartScreenController {
 	public void setFilterByTitle() {
 		this.radioBtnFilterId = false;
 	}
+	
+	@FXML
+	public void setSortByTitle() {
+		this.radioBtnFilterTitle = true;
+	}
+
+	@FXML
+	public void setSortByCost() {
+		this.radioBtnFilterTitle = false;
+	}
 
 	@SuppressWarnings("deprecation")
 	@FXML
