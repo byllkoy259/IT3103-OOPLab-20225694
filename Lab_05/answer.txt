@@ -1,0 +1,29 @@
+1. So sánh Swing và AWT
+
+- Container cấp cao nhất:
+	+ AWT: Sử dụng Frame.
+	+ Swing: Sử dụng JFrame, với các thành phần được thêm vào content-pane thay vì trực tiếp trên JFrame.
+
+- Tên lớp tương ứng:
+	+ AWT sử dụng các lớp như Label, TextField.
+	+ Swing sử dụng các lớp tương ứng như JLabel, JTextField.
+
+- Layout:
+	+ Cả hai đều hỗ trợ Layout Managers, nhưng Swing cung cấp nhiều khả năng tùy chỉnh hơn.
+
+- Trọng lượng:
+	+ AWT là thành phần "nặng" vì nó sử dụng các thành phần gốc của hệ điều hành.
+	+ Swing là thành phần "nhẹ", độc lập với hệ điều hành.
+
+2. Phân tích xử lý sự kiện trong AWTAccumulator và SwingAccumulator
+
+- AWTAccumulator:
+	+ Xử lý sự kiện được thực hiện bằng cách sử dụng một lớp bên trong (Inner class) chứa phương thức actionPerformed().
+	+ Khi người dùng nhấn "Enter" trong TextField, sự kiện sẽ được xử lý:
+	+ Lấy giá trị nhập từ TextField.
+	+ Tính tổng và hiển thị trong TextField chỉ đọc.
+
+- SwingAccumulator:
+	+ Tương tự AWTAccumulator, nhưng sử dụng các thành phần Swing như JTextField.
+	+ Các thành phần GUI được thêm vào content-pane thay vì trực tiếp trên JFrame.
+	+ Xử lý sự kiện vẫn sử dụng actionPerformed() nhưng áp dụng trên JTextField.
