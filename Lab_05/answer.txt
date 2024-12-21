@@ -15,6 +15,8 @@
 	+ AWT là thành phần "nặng" vì nó sử dụng các thành phần gốc của hệ điều hành.
 	+ Swing là thành phần "nhẹ", độc lập với hệ điều hành.
 
+---
+
 2. Phân tích xử lý sự kiện trong AWTAccumulator và SwingAccumulator
 
 - AWTAccumulator:
@@ -27,3 +29,115 @@
 	+ Tương tự AWTAccumulator, nhưng sử dụng các thành phần Swing như JTextField.
 	+ Các thành phần GUI được thêm vào content-pane thay vì trực tiếp trên JFrame.
 	+ Xử lý sự kiện vẫn sử dụng actionPerformed() nhưng áp dụng trên JTextField.
+
+---
+
+3. Hoàn thiện các phương pháp trong NumberGrid
+
+- `DEL` Button:
+Xóa chữ số cuối cùng của chuỗi hiển thị trên `tfDisplay`:
+if (button.equals("DEL")) {
+	String currentText = tfDisplay.getText();
+    String text = currentText.substring(0, currentText.length() - 1);
+    tfDisplay.setText(text);
+
+- `C` Button:
+Xóa toàn bộ chuỗi hiển thị:
+tfDisplay.setText("");
+
+---
+
+4. Hoàn thiện giao diện người dùng GUI AIMS Project
+
+	View Store Screen:
+- Sử dụng `BorderLayout`:
+  - NORTH: Thanh menu và tiêu đề.
+  - CENTER: Hiển thị các sản phẩm trong cửa hàng, mỗi sản phẩm là một `MediaStore`.
+- Các nút tương tác:
+	+ "Play": Mở `JDialog` để phát `Media`.
+	+ "Add to cart": Thêm `Media` vào giỏ hàng.
+
+	View Cart Screen:
+- Sử dụng `JavaFX` với `FXML`.
+- Hiển thị danh sách `Media` trong giỏ hàng bằng `TableView`.
+- Tính năng bổ sung:
+	+ Play Button: Phát media (chỉ nếu media khả dụng).
+	+ Remove Button: Xóa media khỏi giỏ hàng.
+
+	Update Store Screen:
+- Cho phép thêm các mục mới (`Book`, `CD`, `DVD`) vào cửa hàng.
+- Sử dụng các lớp kế thừa như `AddMediaToStoreScreen.
+
+---
+
+5. Exception Handling và các thay đổi trong phương thức `play`
+
+	PlayerException:
+package hust.soict.dsai.aims.exception;
+
+@SuppressWarnings("serial")
+public class PlayerException extends Exception{
+	public PlayerException() {
+		super();
+	}
+
+	public PlayerException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public PlayerException(String message) {
+		super(message);
+	}
+
+	public PlayerException(Throwable cause) {
+		super(cause);
+	}
+}
+
+	MediaException:
+package hust.soict.dsai.aims.exception;
+
+@SuppressWarnings("serial")
+public class MediaException extends Exception{
+	public MediaException() {
+		super();
+	}
+
+	public MediaException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public MediaException(String message) {
+		super(message);
+	}
+
+	public MediaException(Throwable cause) {
+		super(cause);
+	}
+}
+
+---
+
+6. Thay đổi thiết kế
+
+- Sơ đồ lớp:
+	+ Thêm lớp `PlayerException` và `MediaException` và cập nhật mối quan hệ trong sơ đồ lớp.
+- Quản lý lỗi:
+	+ Sử dụng `try-catch` để xử lý lỗi khi phát media hoặc thêm sản phẩm vào giỏ hàng.
+
+---
+
+7. Thử nghiệm và kết quả
+
+- Thử nghiệm giao diện Swing:
+	+ Chạy ứng dụng `View Store Screen`, kiểm tra các nút tương tác.
+- Thử nghiệm giao diện JavaFX:
+	+ Chạy ứng dụng `View Cart Screen`, kiểm tra các nút `Play`, `Remove`.
+
+Ví dụ lỗi:
+- Khi phát `Media` với độ dài không hợp lệ:
+  ERROR: DVD length is non-positive!
+- Hiển thị thông báo lỗi qua `Swing` dialog:
+  JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+---
